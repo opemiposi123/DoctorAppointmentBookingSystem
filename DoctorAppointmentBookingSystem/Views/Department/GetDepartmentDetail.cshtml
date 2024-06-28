@@ -1,0 +1,22 @@
+﻿@model DoctorAppointmentBookingSystem.Dto.DepartmentDto
+
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<h2 class="text-center my-4">Department Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">@Model.Name</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Created By:</strong> @Model.CreatedBy</p>
+        <p><strong>Created Date:</strong> @Model.CreatedDate</p> 
+    </div>
+    <div class="card-footer text-right">
+        <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+    </div>
+</div>
+

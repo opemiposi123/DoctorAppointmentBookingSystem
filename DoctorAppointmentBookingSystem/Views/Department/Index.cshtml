@@ -1,0 +1,36 @@
+﻿@model IEnumerable< DoctorAppointmentBookingSystem.Dto.DepartmentDto>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Departments";
+}
+
+<h2 class="text-center my-4">Departments</h2>
+
+<div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-primary" asp-action="CreateDepartment">Create New Department</a>
+</div>
+
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td class="text-center">
+                    <a class="btn btn-info btn-sm" asp-action="GetDepartmentDetail" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-warning btn-sm" asp-action="EditDepartment" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="DeleteDepartment" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
