@@ -12,7 +12,7 @@ namespace DoctorAppointmentBookingSystem.Entity
         public required string PhoneNumber { get; set; }
         public required string Adress { get; set; }
         public string? MedicalHistory { get; set; } 
-        public DateOnly DateOfBirth { get; set; } 
+        public DateTime DateOfBirth { get; set; } 
         public Gender Gender { get; set; }
         public string? EmergencyContactName { get; set; } 
         public string? EmergencyContactEmail { get; set; } 

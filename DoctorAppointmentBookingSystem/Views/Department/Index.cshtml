@@ -1,5 +1,4 @@
 ﻿@model IEnumerable< DoctorAppointmentBookingSystem.Dto.DepartmentDto>
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Departments";
@@ -29,8 +28,10 @@
                     <a class="btn btn-info btn-sm" asp-action="GetDepartmentDetail" asp-route-id="@item.Id">Details</a>
                     <a class="btn btn-warning btn-sm" asp-action="EditDepartment" asp-route-id="@item.Id">Edit</a>
                     <a class="btn btn-danger btn-sm" asp-action="DeleteDepartment" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-danger btn-sm" asp-route-id="@item.Id" asp-action="GetDoctorsDepartment">Doctors</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

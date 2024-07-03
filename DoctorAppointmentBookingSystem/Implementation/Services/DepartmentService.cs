@@ -3,6 +3,7 @@ using DoctorAppointmentBookingSystem.Dto;
 using DoctorAppointmentBookingSystem.Entity;
 using DoctorAppointmentBookingSystem.Implementation.Interface;
 using DoctorAppointmentBookingSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppointmentBookingSystem.Implementation.Services
@@ -148,6 +149,33 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
                 Name = x.Name,
                 Description = x.Description
             }).ToListAsync();
+        }
+       
+        public async Task<IEnumerable<SelectListItem>> GetDepartmentsSelectList()
+        {
+            var departments = await GetDepartmentList();
+            var departmentList = departments.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Name
+            });
+
+            return new SelectList(departmentList, "Value", "Text");
+        }
+
+        public async Task<List<DoctorDto>> GetDoctorListByDepartment(Guid departmentId)
+        {
+            return await _context.Doctors
+                .Where(d => !d.IsDeleted && d.DepartmentId == departmentId)
+                .Select(d => new DoctorDto
+                {
+                    Id = d.Id,
+                    FullName = d.FullName,
+                    Email = d.Email,
+                    PhoneNumber = d.PhoneNumber,
+                    Gender = d.Gender,
+                    DepartmentName = d.Department.Name,
+                }).ToListAsync();
         }
     }
 } 

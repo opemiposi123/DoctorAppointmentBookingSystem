@@ -1,0 +1,83 @@
+﻿@using DoctorAppointmentBookingSystem.Enum
+@model DoctorAppointmentBookingSystem.Dto.PatientDto
+
+@{
+    ViewData["Title"] = "Register Patient";
+}
+
+<h2>Register Patient</h2>
+
+<form asp-action="RegisterPatient">
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FullName" class="control-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Adress" class="control-label"></label>
+        <input asp-for="Adress" class="form-control" />
+        <span asp-validation-for="Adress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfBirth" class="control-label"></label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label"></label>
+        <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()">
+            <option value="">Select Gender</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmergencyContactName" class="control-label"></label>
+        <input asp-for="EmergencyContactName" class="form-control" />
+        <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmergencyContactEmail" class="control-label"></label>
+        <input asp-for="EmergencyContactEmail" class="form-control" />
+        <span asp-validation-for="EmergencyContactEmail" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmergencyContactRelationship" class="control-label"></label>
+        <input asp-for="EmergencyContactRelationship" class="form-control" />
+        <span asp-validation-for="EmergencyContactRelationship" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MedicalHistory" class="control-label">Medical History</label>
+        <textarea asp-for="MedicalHistory" class="form-control"></textarea>
+        <span asp-validation-for="MedicalHistory" class="text-danger"></span>
+    </div>
+    <div class="text-right">
+        <button class="btn btn-success" type="submit">Register</button>
+        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

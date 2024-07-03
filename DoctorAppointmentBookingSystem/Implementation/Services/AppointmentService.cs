@@ -223,7 +223,8 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
                 DateAndTime = appointment.DateAndTime,
                 ReasonForVisit = appointment.ReasonForVisit,
                 Status = appointment.Status,
-                AppointmentType = appointment.AppointmentType
+                AppointmentType = appointment.AppointmentType,
+                CreatedDate = appointment.CreatedDate,
             };
 
             return appointmentDto;
@@ -239,7 +240,6 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
                     PatientName = a.Patient.FullName,
                     DoctorName = a.Doctor.FullName,
                     DateAndTime = a.DateAndTime,
-                    ReasonForVisit = a.ReasonForVisit,
                     Status = a.Status,
                     AppointmentType = a.AppointmentType
                 }).ToListAsync();

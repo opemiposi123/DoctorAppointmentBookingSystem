@@ -1,0 +1,52 @@
+﻿@using DoctorAppointmentBookingSystem.Enum
+@model DoctorAppointmentBookingSystem.Dto.AppointmentDto
+@{
+    ViewData["Title"] = "Book New Appointment";
+}
+
+<h1>Create Doctor</h1>
+
+<form asp-action="BookAppointment">
+    <div class="form-group">
+        <label asp-for="ReasonForVisit" class="control-label"></label>
+        <input asp-for="ReasonForVisit" class="form-control" />
+        <span asp-validation-for="ReasonForVisit" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateAndTime" class="control-label"></label>
+        <input asp-for="DateAndTime" class="form-control" />
+        <span asp-validation-for="DateAndTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AppointmentType" class="control-label"></label>
+        <select asp-for="AppointmentType" class="form-control" asp-items="Html.GetEnumSelectList<AppointmentType>()">
+            <option value="">Select Appointment Type</option>
+        </select>
+        <span asp-validation-for="AppointmentType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DoctorId" class="control-label"></label>
+        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.Doctors">
+            <option value="">Select Doctor</option>
+        </select>
+        <span asp-validation-for="DoctorId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PatientId" class="control-label"></label>
+        <select asp-for="PatientId" class="form-control" asp-items="ViewBag.Patients">
+            <option value="">Select Patient</option>
+        </select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+    <h1></h1>
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary">Book</button>
+        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

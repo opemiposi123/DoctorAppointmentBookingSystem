@@ -22,7 +22,7 @@ namespace DoctorAppointmentBookingSystem.Controllers
         }
 
         // GET: Patient/Details/5
-        public async Task<IActionResult> Details(Guid id)
+        public async Task<IActionResult> PatientDetail(Guid id)
         {
             var patient = await _patientService.GetPatientDetail(id);
             if (patient == null)
@@ -33,15 +33,15 @@ namespace DoctorAppointmentBookingSystem.Controllers
         }
 
         // GET: Patient/Create
-        public IActionResult Create()
-        {
+        public IActionResult RegisterPatient()
+        { 
             return View();
         }
 
         // POST: Patient/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PatientDto model)
+        public async Task<IActionResult> RegisterPatient(PatientDto model)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace DoctorAppointmentBookingSystem.Controllers
         }
 
         // GET: Patient/Edit/5
-        public async Task<IActionResult> Edit(Guid id)
+        public async Task<IActionResult> EditPatient(Guid id)
         {
             var patient = await _patientService.GetPatientDetail(id);
             if (patient == null)
@@ -69,7 +69,7 @@ namespace DoctorAppointmentBookingSystem.Controllers
         // POST: Patient/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, PatientDto model)
+        public async Task<IActionResult> EditPatient(Guid id, PatientDto model)
         {
             if (id != model.Id)
             {
@@ -88,21 +88,9 @@ namespace DoctorAppointmentBookingSystem.Controllers
             return View(model);
         }
 
-        // GET: Patient/Delete/5
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var patient = await _patientService.GetPatientDetail(id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
-            return View(patient);
-        }
-
-        // POST: Patient/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpGet, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeletePatient(Guid id)
         {
             var result = await _patientService.DeletePatient(id);
             if (result.Success)

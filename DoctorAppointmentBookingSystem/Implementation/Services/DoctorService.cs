@@ -5,6 +5,7 @@ using DoctorAppointmentBookingSystem.Implementation.Interface;
 using DoctorAppointmentBookingSystem.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppointmentBookingSystem.Implementation.Services
@@ -58,6 +59,11 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
                             CreatedDate = DateTime.UtcNow,
                             CreatedBy = "Admin",
                         };
+                        if (doctorSchedule.StartTime <= doctorSchedule.EndTime)
+                        {
+                            response.Success = false;
+                            response.Message = "Start time and end time cannot be equal";
+                        }
 
                         _context.DoctorSchedules.Add(doctorSchedule);
                     }
@@ -196,6 +202,7 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
                 .Select(d => new DoctorDto
                 {
                     Id = d.Id,
+                    UserName = d.UserName,
                     FullName = d.FullName,
                     Email = d.Email,
                     PhoneNumber = d.PhoneNumber,
@@ -204,21 +211,7 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
                 }).ToListAsync();
         }
 
-        public async Task<List<DoctorDto>> GetDoctorListByDepartment(Guid departmentId)
-        {
-            return await _context.Doctors
-                .Where(d => !d.IsDeleted && d.DepartmentId == departmentId)
-                .Select(d => new DoctorDto
-                {
-                    Id = d.Id,
-                    FullName = d.FullName,
-                    Email = d.Email,
-                    PhoneNumber = d.PhoneNumber,
-                    Address = d.Address,
-                    Gender = d.Gender,
-                    DepartmentName = d.Department.Name,
-                }).ToListAsync();
-        }
+     
 
         public async Task<DoctorDto> GetDoctorDetail(Guid id)
         {
@@ -264,6 +257,18 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
             {
                 return new Status { Success = false, Message = "Invalid username or password" }; 
             }
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetDoctorSelectList()
+        {
+            var doctors = await GetDoctorList();
+            var doctorList = doctors.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.FullName
+            });
+
+            return new SelectList(doctorList, "Value", "Text");
         }
     }
 

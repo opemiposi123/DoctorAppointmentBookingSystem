@@ -4,6 +4,7 @@ using DoctorAppointmentBookingSystem.Entity;
 using DoctorAppointmentBookingSystem.Implementation.Interface;
 using DoctorAppointmentBookingSystem.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppointmentBookingSystem.Implementation.Services
@@ -198,6 +199,18 @@ namespace DoctorAppointmentBookingSystem.Implementation.Services
             {
                 return new Status { Success = false, Message = "Invalid username or password" };
             }
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetPatientSelectList()
+        {
+            var patients = await GetPatientList();
+            var doctopatientListrList = patients.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.FullName 
+            });
+
+            return new SelectList(doctopatientListrList, "Value", "Text");
         }
     }
 }

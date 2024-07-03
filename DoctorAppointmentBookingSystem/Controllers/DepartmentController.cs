@@ -1,4 +1,5 @@
 ﻿using DoctorAppointmentBookingSystem.Dto;
+using DoctorAppointmentBookingSystem.Entity;
 using DoctorAppointmentBookingSystem.Implementation.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,24 +33,19 @@ namespace DoctorAppointmentBookingSystem.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetDoctorsDepartment(Guid departmentId) 
+        {
+            var department = await _departmentService.GetDoctorListByDepartment(departmentId); 
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return View(department);
+        }
+
+        [HttpGet]
         public IActionResult CreateDepartment() => 
          View();
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken] 
-        //public async Task<IActionResult> CreateDepartment([FromForm]DepartmentDto departmentDto)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = await _departmentService.CreateDepartment(departmentDto); 
-        //        if (result.Success)
-        //        {
-        //            return RedirectToAction(nameof(Index));
-        //        }
-        //        ModelState.AddModelError(string.Empty, result.Message);
-        //    }
-        //    return View(departmentDto);
-        //}
 
         [HttpPost]
         public async Task<IActionResult> CreateDepartment([FromForm] DepartmentDto departmentDto)
@@ -104,7 +100,6 @@ namespace DoctorAppointmentBookingSystem.Controllers
             }
             return View(departmentDto);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> DeleteDepartment([FromRoute]Guid id)

@@ -1,0 +1,47 @@
+﻿@model DoctorAppointmentBookingSystem.Dto.PatientDto
+
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<h2>Patient Details</h2>
+
+<div>
+    <h4>@Model.FullName</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">User Name</dt>
+        <dd class="col-sm-10">@Model.UserName</dd>
+
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Phone Number</dt>
+        <dd class="col-sm-10">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-2">Address</dt>
+        <dd class="col-sm-10">@Model.Adress</dd>
+
+        <dt class="col-sm-2">Medical History</dt>
+        <dd class="col-sm-10">@Model.MedicalHistory</dd>
+
+        <dt class="col-sm-2">Date of Birth</dt>
+        <dd class="col-sm-10">@Model.DateOfBirth</dd>
+
+        <dt class="col-sm-2">Gender</dt>
+        <dd class="col-sm-10">@Model.Gender</dd>
+
+        <dt class="col-sm-2">Emergency Contact Name</dt>
+        <dd class="col-sm-10">@Model.EmergencyContactName</dd>
+
+        <dt class="col-sm-2">Emergency Contact Email</dt>
+        <dd class="col-sm-10">@Model.EmergencyContactEmail</dd>
+
+        <dt class="col-sm-2">Emergency Contact Relationship</dt>
+        <dd class="col-sm-10">@Model.EmergencyContactRelationship</dd>
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-warning">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+</div>

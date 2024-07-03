@@ -1,0 +1,37 @@
+﻿@model DoctorAppointmentBookingSystem.Dto.AppointmentDto
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<h2>Appointment Detail</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Patient Name</dt>
+        <dd class="col-sm-10">@Model.PatientName</dd>
+
+        <dt class="col-sm-2">DoctorName</dt>
+        <dd class="col-sm-10">@Model.DoctorName</dd>
+
+        <dt class="col-sm-2">ReasonForVisit</dt>
+        <dd class="col-sm-10">@Model.ReasonForVisit</dd>
+
+        <dt class="col-sm-2">AppointmentType</dt>
+        <dd class="col-sm-10">@Model.AppointmentType</dd>
+
+        <dt class="col-sm-2">Appointment Status</dt>
+        <dd class="col-sm-10">@Model.Status</dd>
+
+        <dt class="col-sm-2">DateAndTime</dt>
+        <dd class="col-sm-10">@Model.DateAndTime</dd>
+
+        <dt class="col-sm-2">Date Booked</dt>
+        <dd class="col-sm-10">@Model.CreatedDate</dd>
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("EditAppointment", new { id = Model.Id })" class="btn btn-warning">Edit</a>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+</div>

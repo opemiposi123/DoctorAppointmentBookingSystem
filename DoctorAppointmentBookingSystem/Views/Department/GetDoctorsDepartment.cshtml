@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DoctorAppointmentBookingSystem.Dto.DoctorDto>
+
+@{
+    ViewData["Title"] = "Doctors Department";
+}
+
+<h2>DoctorDepartment List</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>DepartmentName</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var docotrDepartment in Model)
+        {
+            <tr>
+                <td>@docotrDepartment.FullName</td>
+                <td>@docotrDepartment.Email</td>
+                <td>@docotrDepartment.PhoneNumber</td>
+                <td>@docotrDepartment.Gender</td>
+                <td>@docotrDepartment.DepartmentName</td> 
+                <td>
+                    <a href="@Url.Action("DoctorDetail", "Doctor",new { id = docotrDepartment.Id })" class="btn btn-info">Doctor Detail</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

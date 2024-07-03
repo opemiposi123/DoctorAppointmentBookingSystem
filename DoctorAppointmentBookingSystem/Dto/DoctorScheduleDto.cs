@@ -10,11 +10,9 @@ namespace DoctorAppointmentBookingSystem.Dto
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
-        [Required(ErrorMessage = "StartTimeAndDate is required")]
-        public TimeSpan StartTimeAndDate { get; set; }
-        [Required(ErrorMessage = "EndTimeAndDate is required")]
-        public TimeSpan EndTimeAndDate { get; set; }
-        public DayOfWeek DayOfWeek { get; set; } 
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public DayOfWeek DayOfTheWeek { get; set; } 
         public Guid DoctorId { get; set; }
         public string DoctorFullName { get; set; } 
     }

@@ -1,6 +1,7 @@
 ﻿using DoctorAppointmentBookingSystem.Dto;
 using DoctorAppointmentBookingSystem.Entity;
 using DoctorAppointmentBookingSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DoctorAppointmentBookingSystem.Implementation.Interface
 {
@@ -10,10 +11,10 @@ namespace DoctorAppointmentBookingSystem.Implementation.Interface
         Task<ResponseModel<DoctorDto>> EditDoctor(DoctorDto editDoctor);
         Task<ResponseModel<DoctorDto>> DeleteDoctor(Guid Id);
         Task<List<DoctorDto>> GetDoctorList();
-        Task<List<DoctorDto>> GetDoctorListByDepartment(Guid departmentId); 
-        Task<DoctorDto> GetDoctorDetail(Guid Id);
-        Doctor GetDoctorById(Guid id);
-        Task<Status> DoctorLogin(LoginModel login);
 
+        Task<DoctorDto> GetDoctorDetail(Guid Id);
+        Doctor GetDoctorById(Guid id); 
+        Task<Status> DoctorLogin(LoginModel login);
+        Task<IEnumerable<SelectListItem>> GetDoctorSelectList();
     }
 }

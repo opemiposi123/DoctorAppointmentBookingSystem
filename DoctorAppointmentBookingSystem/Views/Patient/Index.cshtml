@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DoctorAppointmentBookingSystem.Dto.PatientDto>
+
+@{
+    ViewData["Title"] = "Patient List";
+}
+
+<h2>Patients List</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Full Name</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>EmergencyContactName</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.FullName</td>
+                <td>@patient.UserName</td>
+                <td>@patient.Email</td>
+                <td>@patient.PhoneNumber</td>
+                <td>@patient.EmergencyContactName</td>
+                <td>
+                    <a href="@Url.Action("PatientDetail", new { id = patient.Id })" class="btn btn-info">Details</a>
+                    <a href="@Url.Action("EditPatient", new { id = patient.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeletePatient", new { id = patient.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("RegisterPatient", "Patient")" class="btn btn-success">Create New Patient</a>
